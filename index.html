@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>Brawl Stars Tierlist</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #121212;
+    color: white;
+    text-align: center;
+}
+
+h1 { margin: 15px; }
+
+#search {
+    padding: 10px;
+    width: 260px;
+    border-radius: 10px;
+    border: none;
+}
+
+.tier {
+    display: flex;
+    align-items: center;
+    margin: 8px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.tier-label {
+    width: 60px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.tier-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.S { background: #ff4d4d; }
+.A { background: #ff944d; }
+.B { background: #ffd24d; }
+.C { background: #bfff4d; }
+.D { background: #4dff88; }
+
+.skin {
+    width: 95px;
+    height: 95px;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: grab;
+    background: #333;
+}
+
+.skin img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.brawler-icon {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Brawl Stars Skin Tierlist</h1>
+<input id="search" placeholder="Zoek skin of brawler...">
+
+<div id="tiers"></div>
+<h2>Skins</h2>
+<div id="skins" class="tier-container"></div>
+
+<script>
+// tiers
+["S","A","B","C","D"].forEach(name => {
+    const tier = document.createElement("div");
+    tier.className = "tier " + name;
+
+    const label = document.createElement("div");
+    label.className = "tier-label";
+    label.innerText = name;
+
+    const container = document.createElement("div");
+    container.className = "tier-container";
+
+    container.ondragover = e => e.preventDefault();
+    container.ondrop = e => {
+        const id = e.dataTransfer.getData("text");
+        container.appendChild(document.getElementById(id));
+    };
+
+    tier.appendChild(label);
+    tier.appendChild(container);
+    document.body.appendChild(tier);
+});
+
+// 🔥 ALLE JOUW SKINS
+const skins = [
+
+["Mortis","Default"],["Mortis","Top Hat Mortis"],["Mortis","Rockabilly Mortis"],
+["Mortis","Night Witch Mortis"],["Mortis","Beach Time Mortis"],
+["Mortis","Rogue Mortis"],["Mortis","Light Mecha Mortis"],
+["Mortis","Dark Mecha Mortis"],["Mortis","Gala Mortis"],
+
+["Leon","Default"],["Leon","Dino Leon"],["Leon","Werewolf Leon"],
+["Leon","Shark Leon"],["Leon","Sally Leon"],["Leon","Trick or Treat Leon"],
+["Leon","True Silver Leon"],["Leon","True Gold Leon"],
+
+["Bull","Default"],["Bull","Viking Bull"],["Bull","Linebacker Bull"],
+["Bull","Touchdown Bull"],["Bull","Barbarian King Bull"],
+["Bull","Space Ox Bull"],["Bull","True Silver Bull"],["Bull","True Gold Bull"],
+
+["Nita","Default"],["Nita","Panda Nita"],["Nita","Red Nose Nita"],
+["Nita","Shiba Nita"],["Nita","Whale Watch Nita"],
+["Nita","True Silver Nita"],["Nita","True Gold Nita"],
+
+["Poco","Default"],["Poco","Serenade Poco"],["Poco","Pirate Poco"],
+["Poco","Trash Poco"],["Poco","Starr Poco"],
+["Poco","True Silver Poco"],["Poco","True Gold Poco"],
+
+["Shelly","Default"],["Shelly","Bandita Shelly"],["Shelly","Star Shelly"],
+["Shelly","Witch Shelly"],["Shelly","PSG Shelly"],
+["Shelly","Princess Shelly"],["Shelly","True Silver Shelly"],
+["Shelly","True Gold Shelly"],
+
+["Crow","Default"],["Crow","White Crow"],["Crow","Captain Crow"],
+["Crow","Night Mecha Crow"],["Crow","Gold Mecha Crow"],
+["Crow","Crowbone"],["Crow","Moon Guardian Crow"],
+
+["Surge","Default"],["Surge","Mecha Paladin Surge"],["Surge","Kong Surge"],
+["Surge","Kraken Surge"],["Surge","DIY Surge"],
+["Surge","True Silver Surge"],["Surge","True Gold Surge"],
+
+["Spike","Default"],["Spike","Sakura Spike"],["Spike","Robo Spike"],
+["Spike","Mask Spike"],["Spike","Dark Lord Spike"],
+["Spike","Logmas Spike"],
+
+["Colt","Default"],["Colt","Rockstar Colt"],["Colt","Royal Agent Colt"],
+["Colt","Outlaw Colt"],["Colt","Challenger Colt"],
+["Colt","Handsome Colt"],["Colt","True Silver Colt"],
+["Colt","True Gold Colt"],
+
+["Fang","Default"],["Fang","Furious Fang"],["Fang","Octo Fang"],
+["Fang","Ferocious Fang"],["Fang","Kabocha Fang"],
+["Fang","True Silver Fang"],["Fang","True Gold Fang"],
+
+["Dynamike","Default"],["Dynamike","Santa Mike"],["Dynamike","Chef Mike"],
+["Dynamike","Robo Mike"],["Dynamike","Coach Mike"],
+["Dynamike","True Silver Dynamike"],["Dynamike","True Gold Dynamike"],
+
+["Jessie","Default"],["Jessie","Red Dragon Jessie"],
+["Jessie","Summer Jessie"],["Jessie","Cat Burglar Jessie"],
+["Jessie","Tanuki Jessie"],["Jessie","True Silver Jessie"],
+["Jessie","True Gold Jessie"],
+
+["Bibi","Default"],["Bibi","Zombibi"],["Bibi","Bibilante"],
+["Bibi","Heroine Bibi"],["Bibi","Bibi RJ"],
+["Bibi","Gamer Bibi"],["Bibi","Thor Bibi"],
+
+["Bo","Default"],["Bo","Horus Bo"],["Bo","Light Mecha Bo"],
+["Bo","Underworld Bo"],["Bo","Warrior Bo"],
+["Bo","True Silver Bo"],["Bo","True Gold Bo"],
+
+["Piper","Default"],["Piper","Pink Piper"],["Piper","Choco Piper"],
+["Piper","Cupid Piper"],["Piper","Lunar Piper"],
+["Piper","Calavera Piper"],["Piper","True Silver Piper"],
+["Piper","True Gold Piper"]
+
+];
+
+// afbeelding generator
+function img(name){
+    return "https://static.wikia.nocookie.net/brawlstars/images/" + name.replaceAll(" ","_") + ".png";
+}
+
+const skinsDiv = document.getElementById("skins");
+
+function render(list){
+    skinsDiv.innerHTML = "";
+
+    list.forEach((s,i) => {
+        const div = document.createElement("div");
+        div.className = "skin";
+        div.id = "skin"+i;
+
+        const skinImg = document.createElement("img");
+        skinImg.src = img(s[1] === "Default" ? s[0] : s[1]);
+
+        const icon = document.createElement("img");
+        icon.src = img(s[0]);
+        icon.className = "brawler-icon";
+
+        div.appendChild(skinImg);
+        div.appendChild(icon);
+
+        div.draggable = true;
+        div.ondragstart = e => {
+            e.dataTransfer.setData("text", div.id);
+        };
+
+        skinsDiv.appendChild(div);
+    });
+}
+
+render(skins);
+
+// search
+document.getElementById("search").addEventListener("input", e => {
+    const val = e.target.value.toLowerCase();
+
+    render(skins.filter(s =>
+        s[0].toLowerCase().includes(val) ||
+        s[1].toLowerCase().includes(val)
+    ));
+});
+</script>
+
+</body>
+</html>
